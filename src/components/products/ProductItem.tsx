@@ -2,8 +2,10 @@
 
 import React from 'react'
 import Badge from './Badge'
+import { NavLink } from 'react-router-dom'
 
 interface ProductItemProps {
+  id: number
   name: string
   description: string
   price: string
@@ -13,6 +15,7 @@ interface ProductItemProps {
 }
 
 const ProductItem: React.FC<ProductItemProps> = ({
+  id,
   name,
   description,
   price,
@@ -35,7 +38,9 @@ const ProductItem: React.FC<ProductItemProps> = ({
         {isHot && <Badge title='HOT!' />}
       </div>
       <div className='text-center'>
-        <h3 className='text-lg font-extrabold text-gray-800'>{name}</h3>
+        <h3 className='text-lg font-extrabold text-gray-800'>
+          <NavLink to={`/products/${id}`}>{name}</NavLink>
+        </h3>
         <p className='text-gray-600 text-sm mt-2'>{description}</p>
         <h4 className='text-lg text-gray-800 font-bold mt-4'>{price}</h4>
       </div>
