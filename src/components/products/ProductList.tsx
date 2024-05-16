@@ -1,23 +1,8 @@
 import React from 'react'
 import ProductItem from './ProductItem'
+import { Product } from '../../types/products'
 
-interface Product {
-  id: number
-  name: string
-  desc: string
-  hot: number
-  thumb: string
-  price: number
-  price_old: number
-  video: string
-  type_thumb_video: string
-}
-
-interface ProductListProps {
-  products: Product[]
-}
-
-const ProductList: React.FC<ProductListProps> = ({ products }) => {
+const ProductList: React.FC<{ products: Product[] }> = ({ products }) => {
   console.log(products)
 
   return (
@@ -27,26 +12,12 @@ const ProductList: React.FC<ProductListProps> = ({ products }) => {
           key={product.id}
           id={product.id}
           name={product.name}
-          description={product.desc}
+          description={product.desc || ''} // Add default value for description
           price={`${product.price}đ`}
           imageUrl={product.thumb}
           isHot={product.hot === 1}
         />
       ))}
-      {/* <ProductItem
-        name='FERA PET'
-        description='Bột hỗ trợ xương và khớp Hip + Joint Dog cho chó'
-        price='1.200.000đ'
-        imageUrl='https://readymadeui.com/images/product13.webp'
-        isHot={true}
-      />
-      <ProductItem
-        name='FERA PET'
-        description='Bột hỗ trợ bàng quang cho chó và mèo'
-        price='1.200.000đ'
-        imageUrl='https://readymadeui.com/images/product14.webp'
-        isNew={true}
-      /> */}
     </div>
   )
 }

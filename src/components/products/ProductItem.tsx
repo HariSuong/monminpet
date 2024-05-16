@@ -3,16 +3,7 @@
 import React from 'react'
 import Badge from './Badge'
 import { NavLink } from 'react-router-dom'
-
-interface ProductItemProps {
-  id: number
-  name: string
-  description: string
-  price: string
-  imageUrl: string
-  isNew?: boolean
-  isHot?: boolean
-}
+import { ProductItemProps } from '../../types/products'
 
 const ProductItem: React.FC<ProductItemProps> = ({
   id,

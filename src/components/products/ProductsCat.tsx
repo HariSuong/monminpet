@@ -16,7 +16,7 @@ const ProductsCat: React.FC = () => {
         <Title
           title={cat.name}
           subtitle='best seller'
-          to={`/products/?categoryId=${cat.id}&page=1`}
+          to={`/products/?catId=${cat.id}&page=1`}
         />
         <div className='font-[sans-serif] '>
           <div className='p-4 mx-auto lg:max-w-7xl sm:max-w-full'>

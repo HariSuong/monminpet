@@ -1,57 +1,45 @@
-import { UseQueryResult, useQuery } from '@tanstack/react-query'
+// components/products/useProducts.ts
+import { useQuery, useQueryClient } from '@tanstack/react-query'
+import { useSearchParams } from 'react-router-dom'
+import { fetchProduct } from '../../services/apiProducts'
+import { ProductPagination } from '../../types/products'
 
-interface Product {
-  id: number
-  name: string
-  desc: string
-  hot: number
-  thumb: string
-  price: number
-  price_old: number
-  video: string
-  type_thumb_video: string
-}
+export const useProducts = () => {
+  const queryClient = useQueryClient()
+  const [searchParams] = useSearchParams()
 
-const fetchProducts = async (
-  categoryId: number | null,
-  page: number
-): Promise<Product[]> => {
-  if (categoryId === 0) return []
+  const page = !searchParams.get('page') ? 1 : Number(searchParams.get('page'))
+  const catId = !searchParams.get('catId')
+    ? 1
+    : Number(searchParams.get('catId'))
 
-  try {
-    const response = await fetch(
-      `https://monminpet.com/public/api/products/${categoryId}?page=${page}`
-    )
-    if (!response.ok) {
-      throw new Error('Network response was not ok')
-    }
-    const data = await response.json()
-    if (!data.success || !data.data) {
-      throw new Error('Invalid response structure')
-    }
-    return data.data.data.map((item: Product) => ({
-      id: item.id,
-      name: item.name,
-      desc: item.desc,
-      hot: item.hot,
-      thumb: item.thumb,
-      price: item.price,
-      price_old: item.price_old,
-      video: item.video,
-      type_thumb_video: item.type_thumb_video
-    }))
-  } catch (error) {
-    console.error('Error fetching products:', error)
-    throw error
-  }
-}
-
-export const useProducts = (
-  categoryId: number,
-  page: number
-): UseQueryResult<Product[], Error> => {
-  return useQuery<Product[], Error>({
-    queryKey: ['products', categoryId, page],
-    queryFn: () => fetchProducts(categoryId, page)
+  const {
+    data: productPagination,
+    isLoading,
+    error
+  } = useQuery<ProductPagination>({
+    queryKey: ['products', { catId, page }],
+    queryFn: () => fetchProduct({ catId, page })
   })
+
+  // Prefetch next and previous pages for better user experience
+  if (page < (productPagination?.last_page || 1)) {
+    queryClient.prefetchQuery({
+      queryKey: ['products', { catId, page: page + 1 }],
+      queryFn: () => fetchProduct({ catId, page: page + 1 })
+    })
+  }
+
+  if (page > 1) {
+    queryClient.prefetchQuery({
+      queryKey: ['products', { catId, page: page - 1 }],
+      queryFn: () => fetchProduct({ catId, page: page - 1 })
+    })
+  }
+
+  return {
+    products: productPagination?.data || [],
+    isPending: isLoading,
+    error
+  }
 }
