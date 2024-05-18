@@ -1,15 +1,3 @@
-// export interface Product {
-//   id: number
-//   name: string
-//   desc: string
-//   hot: number
-//   thumb: string
-//   price: number
-//   price_old: number
-//   video: string
-//   type_thumb_video: string
-// }
-
 // types/products.ts
 export interface Product {
   id: number

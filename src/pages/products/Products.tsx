@@ -7,18 +7,25 @@ import ProductList from '../../components/products/ProductList'
 import { useProducts } from '../../components/products/useProducts'
 
 const Products: React.FC = () => {
-  const { products, isPending, error } = useProducts()
+  const { products, loading, error, goToPage, currentPage } = useProducts()
 
-  if (isPending) return <Loading />
+  if (loading) return <Loading />
   if (error) return <div>Error fetching products.</div>
+
+  if (!products) return null // Kiểm tra nếu products là null
+
+  const { links, last_page, data } = products
 
   return (
     <>
       <Banner />
       <div className='font-[sans-serif] bg-gray-100'>
         <div className='p-4 mx-auto lg:max-w-7xl sm:max-w-full'>
-          <ProductList products={products} />
-          <Pagination />
+          <ProductList products={data} />
+          <Pagination
+            pageInfo={{ current_page: currentPage, links, last_page }}
+            onPageChange={goToPage}
+          />
         </div>
       </div>
       <Footer />
