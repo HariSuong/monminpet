@@ -1,10 +1,10 @@
 import React from 'react'
 import Slider from 'react-slick'
+import { ProductListProps } from '../../types/products'
 import { settings } from '../../ultis/SettingSlider'
 import ProductItem from './ProductItem'
-import { ProductList } from '../../types/products'
 
-const ProductSlider: React.FC<ProductList> = ({ products }) => {
+const ProductSlider: React.FC<ProductListProps> = ({ products }) => {
   return (
     <Slider {...settings}>
       {products.map(product => (

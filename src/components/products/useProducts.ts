@@ -1,6 +1,6 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import { useSearchParams } from 'react-router-dom'
-import { fetchProduct } from '../../services/apiProducts'
+import { fetchProducts } from '../../services/apiProducts'
 import { ProductPagination } from '../../types/products'
 import { useEffect } from 'react'
 
@@ -13,7 +13,7 @@ export const useProducts = () => {
 
   const { data, error, isLoading } = useQuery<ProductPagination, Error>({
     queryKey: ['products', catId, currentPage],
-    queryFn: () => fetchProduct({ catId, page: currentPage })
+    queryFn: () => fetchProducts({ catId, page: currentPage })
   })
 
   // prefetch dữ liệu của trang tiếp theo và trang trước đó
@@ -24,14 +24,14 @@ export const useProducts = () => {
       if (currentPage < last_page) {
         queryClient.prefetchQuery({
           queryKey: ['products', catId, currentPage + 1],
-          queryFn: () => fetchProduct({ catId, page: currentPage + 1 })
+          queryFn: () => fetchProducts({ catId, page: currentPage + 1 })
         })
       }
 
       if (currentPage > 1) {
         queryClient.prefetchQuery({
           queryKey: ['products', catId, currentPage - 1],
-          queryFn: () => fetchProduct({ catId, page: currentPage - 1 })
+          queryFn: () => fetchProducts({ catId, page: currentPage - 1 })
         })
       }
     }
