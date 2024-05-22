@@ -1,138 +1,156 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
+import LogoFooter from '../assets/images/logo/logo-footer.png'
+import IconFb from '../assets/images/social/facebook.png'
+import IconZalo from '../assets/images/social/zalo.png'
+import IconInsta from '../assets/images/social/instagram.png'
+import IconYtb from '../assets/images/social/ytb.png'
+import IconShopee from '../assets/images/social/cart-shoppee.png'
+import IconLazada from '../assets/images/social/lazada.png'
+import IconTiktok from '../assets/images/social/tiktok.png'
+
+import IconAdress from '../assets/images/icon/icon-address.png'
+import IconPhone from '../assets/images/icon/icon-phone.png'
+import IconEmail from '../assets/images/icon/icon-email.png'
 
 const Footer: React.FC = () => {
   return (
-    <footer className='bg-gray-900 p-10 font-[sans-serif] tracking-wide'>
-      <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8'>
+    <footer className='bg-[#424040] px-10 py-28 font-[sans-serif] tracking-wide'>
+      <div className='grid grid-cols-1 sm:grid-cols-2 lg:flex lg:gap-16 gap-8'>
         <div className='lg:flex lg:items-center'>
           <a href='javascript:void(0)'>
-            <img
-              src='https://readymadeui.com/readymadeui-light.svg'
-              alt='logo'
-              className='w-52'
-            />
+            <img src={LogoFooter} alt='MonMinPet' className='w-full' />
           </a>
         </div>
-
-        <div className='lg:flex lg:items-center'>
-          <ul className='flex space-x-6'>
+        <div>
+          <h4 className='text-lg font-semibold mb-6 text-white uppercase'>
+            về chúng tôi
+          </h4>
+          <div className='flex gap-7'>
+            <ul className='space-y-4'>
+              <li>
+                <Link to='/' className='text-gray-300 hover:text-white text-sm'>
+                  TRANG CHỦ
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to='/aboutUs'
+                  className='text-gray-300 hover:text-white text-sm'>
+                  GIỚI THIỆU
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to='/products/home'
+                  className='text-gray-300 hover:text-white text-sm'>
+                  SẢN PHẨM
+                </Link>
+              </li>
+            </ul>
+            <ul className='space-y-4'>
+              <li>
+                <Link
+                  to='/services'
+                  className='text-gray-300 hover:text-white text-sm'>
+                  DỊCH VỤ
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to='/academy'
+                  className='text-gray-300 hover:text-white text-sm'>
+                  ACADEMY
+                </Link>
+              </li>
+              <li>
+                <Link
+                  to='/posts'
+                  className='text-gray-300 hover:text-white text-sm'>
+                  TIN TỨC
+                </Link>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div>
+          <h4 className='text-lg font-semibold mb-6 text-white uppercase'>
+            Kết nối với chúng tôi
+          </h4>
+          <ul className='flex space-x-4 items-center mb-4'>
             <li>
               <a href='javascript:void(0)'>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  className='fill-gray-300 hover:fill-white w-7 h-7'
-                  viewBox='0 0 24 24'
-                >
-                  <path
-                    fillRule='evenodd'
-                    d='M19 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7v-7h-2v-3h2V8.5A3.5 3.5 0 0 1 15.5 5H18v3h-2a1 1 0 0 0-1 1v2h3v3h-3v7h4a2 2 0 0 0 2-2V5a2 2 0 0 0-2-2z'
-                    clipRule='evenodd'
-                  />
-                </svg>
+                <img src={IconFb} alt='Facebook' className='w-6' />
               </a>
             </li>
             <li>
               <a href='javascript:void(0)'>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  className='fill-gray-300 hover:fill-white w-7 h-7'
-                  viewBox='0 0 24 24'
-                >
-                  <path
-                    fillRule='evenodd'
-                    d='M21 5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V5zm-2.5 8.2v5.3h-2.79v-4.93a1.4 1.4 0 0 0-1.4-1.4c-.77 0-1.39.63-1.39 1.4v4.93h-2.79v-8.37h2.79v1.11c.48-.78 1.47-1.3 2.32-1.3 1.8 0 3.26 1.46 3.26 3.26zM6.88 8.56a1.686 1.686 0 0 0 0-3.37 1.69 1.69 0 0 0-1.69 1.69c0 .93.76 1.68 1.69 1.68zm1.39 1.57v8.37H5.5v-8.37h2.77z'
-                    clipRule='evenodd'
-                  />
-                </svg>
+                <img src={IconZalo} alt='Zalo' className='w-10' />
               </a>
             </li>
             <li>
               <a href='javascript:void(0)'>
-                <svg
-                  xmlns='http://www.w3.org/2000/svg'
-                  fill='none'
-                  className='fill-gray-300 hover:fill-white w-7 h-7'
-                  viewBox='0 0 24 24'
-                >
-                  <path d='M22.92 6c-.77.35-1.6.58-2.46.69.88-.53 1.56-1.37 1.88-2.38-.83.5-1.75.85-2.72 1.05C18.83 4.5 17.72 4 16.46 4c-2.35 0-4.27 1.92-4.27 4.29 0 .34.04.67.11.98-3.56-.18-6.73-1.89-8.84-4.48-.37.63-.58 1.37-.58 2.15 0 1.49.75 2.81 1.91 3.56-.71 0-1.37-.2-1.95-.5v.03c0 2.08 1.48 3.82 3.44 4.21a4.22 4.22 0 0 1-1.93.07 4.28 4.28 0 0 0 4 2.98 8.521 8.521 0 0 1-5.33 1.84c-.34 0-.68-.02-1.02-.06C3.9 20.29 6.16 21 8.58 21c7.88 0 12.21-6.54 12.21-12.21 0-.19 0-.37-.01-.56.84-.6 1.56-1.36 2.14-2.23z' />
-                </svg>
+                <img src={IconInsta} alt='Instagram' className='w-10' />
+              </a>
+            </li>
+            <li>
+              <a href='javascript:void(0)'>
+                <img src={IconYtb} alt='Youtube' className='w-10' />
+              </a>
+            </li>
+          </ul>
+          <ul className='flex space-x-4 items-center'>
+            <li>
+              <a href='javascript:void(0)'>
+                <img src={IconShopee} alt='Facebook' className='w-10' />
+              </a>
+            </li>
+            <li>
+              <a href='javascript:void(0)'>
+                <img src={IconLazada} alt='Zalo' className='w-14' />
+              </a>
+            </li>
+            <li>
+              <a href='javascript:void(0)'>
+                <img src={IconTiktok} alt='Instagram' className='w-10' />
               </a>
             </li>
           </ul>
         </div>
-
         <div>
-          <h4 className='text-lg font-semibold mb-6 text-white'>Contact Us</h4>
+          <h4 className='text-lg font-semibold mb-6 text-white uppercase'>
+            liên hệ
+          </h4>
           <ul className='space-y-4'>
             <li>
-              <a
-                href='javascript:void(0)'
-                className='text-gray-300 hover:text-white text-sm'
-              >
-                Email
-              </a>
+              <Link
+                to='https://maps.app.goo.gl/HwucvRTriBddpoi27'
+                target='_blank'
+                className='text-gray-300 hover:text-white text-sm flex items-center gap-3'>
+                <img src={IconAdress} alt='Address' className='w-7' />
+                <p className='text-white'>1046 Âu Cơ, P14, Tân Bình</p>
+              </Link>
             </li>
             <li>
-              <a
-                href='javascript:void(0)'
-                className='text-gray-300 hover:text-white text-sm'
-              >
-                Phone
-              </a>
+              <Link
+                to='tel:0939233398'
+                className='text-gray-300 hover:text-white text-sm flex items-center gap-3'>
+                <img src={IconPhone} alt='Phone' className='w-7' />
+                <p className='text-white'>0939 233 398</p>
+              </Link>
             </li>
-            <li>
-              <a
-                href='javascript:void(0)'
-                className='text-gray-300 hover:text-white text-sm'
-              >
-                Address
-              </a>
-            </li>
-          </ul>
-        </div>
 
-        <div>
-          <h4 className='text-lg font-semibold mb-6 text-white'>Information</h4>
-          <ul className='space-y-4'>
             <li>
-              <a
-                href='javascript:void(0)'
-                className='text-gray-300 hover:text-white text-sm'
-              >
-                About Us
-              </a>
-            </li>
-            <li>
-              <a
-                href='javascript:void(0)'
-                className='text-gray-300 hover:text-white text-sm'
-              >
-                Terms &amp; Conditions
-              </a>
-            </li>
-            <li>
-              <a
-                href='javascript:void(0)'
-                className='text-gray-300 hover:text-white text-sm'
-              >
-                Privacy Policy
-              </a>
+              <Link
+                to='mailto:Monminpet@gmail.com'
+                className='text-gray-300 hover:text-white text-sm flex items-center gap-3'>
+                <img src={IconEmail} alt='Phone' className='w-7' />
+                <p className='text-white'>Monminpet@gmail.com</p>
+              </Link>
             </li>
           </ul>
         </div>
       </div>
-
-      <p className='text-gray-300 text-sm mt-10'>
-        © 2023
-        <a
-          href='javascript:void(0)'
-          target='_blank'
-          className='hover:underline mx-1'
-        >
-          ReadymadeUI
-        </a>
-        All Rights Reserved.
-      </p>
     </footer>
   )
 }

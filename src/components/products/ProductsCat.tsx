@@ -28,7 +28,7 @@ const ProductsCat: React.FC = () => {
   })
 
   return (
-    <div className='py-16 sm:py-24 lg:mx-auto lg:max-w-7xl lg:px-8'>
+    <div className='py-4 sm:py-24 lg:mx-auto lg:max-w-7xl lg:px-8'>
       {products}
     </div>
   )

@@ -58,6 +58,7 @@ export interface ProductDetail {
   name: string
   thumb: string
   desc: string
+  content: string
   hot: number
   imgs: string[]
   video: string

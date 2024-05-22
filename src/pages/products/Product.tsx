@@ -6,6 +6,7 @@ import ProductDetail from '../../components/products/ProductDetail'
 import Accordion from '../../components/Accordion'
 import { useProduct } from '../../components/products/useProduct'
 import Loading from '../../components/Loading'
+import Footer from '../../components/Footer'
 
 const Product = () => {
   const { productId } = useParams<{ productId: string }>()
@@ -23,7 +24,6 @@ const Product = () => {
   if (!product) {
     return <div>Product not found</div>
   }
-  console.log(product)
 
   return (
     <section className='text-gray-700 body-font overflow-hidden bg-white'>
@@ -36,13 +36,14 @@ const Product = () => {
         <div className='lg:w-4/5 mx-auto flex flex-wrap'>
           <SliderThumb images={product.imgs} />
           <ProductInfo />
-          <ProductDetail />
+          <ProductDetail content={product.content} />
           {/* <SliderThumb images={product.imgs} />
           <ProductInfo product={product} />
           <ProductDetail product={product} /> */}
           <Accordion />
         </div>
       </div>
+      <Footer />
     </section>
   )
 }
