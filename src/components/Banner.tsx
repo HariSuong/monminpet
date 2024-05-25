@@ -1,25 +1,59 @@
-import React from 'react'
+import React, { useRef } from 'react'
+import { Link, useSearchParams } from 'react-router-dom'
+interface BannerProps {
+  type: string
+  url: string
+  position?: string
+}
 
-const Banner: React.FC = () => {
-  return (
-    <div className='bg-gradient-to-b from-blue-900 via-blue-700 to-blue-500 px-6 sm:py-20 py-10 font-[sans-serif]'>
-      <div className='max-w-screen-xl mx-auto text-center text-white'>
-        <h1 className='text-5xl max-sm:text-3xl font-extrabold leading-tight mb-4'>
-          Welcome to Our Premium Service
-        </h1>
-        <p className='text-lg mb-8'>
-          Experience excellence like never before with our exclusive products
-          and services.
-        </p>
-        <button
-          type='button'
-          className='bg-blue-600 hover:bg-blue-700 text-white text-lg font-semibold px-8 py-2 rounded-full transition duration-300 ease-in-out shadow-lg hover:shadow-xl'
-        >
-          Get Started
-        </button>
+const Banner: React.FC<BannerProps> = ({ type, url, position }) => {
+  const [searchParams] = useSearchParams()
+  const catId = Number(searchParams.get('catId'))
+
+  console.log(catId)
+
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  const handleVideoEnd = () => {
+    if (videoRef.current) {
+      setTimeout(() => {
+        videoRef.current?.play()
+      }, 100) // 1 giây
+    }
+  }
+
+  // const { products } = useProducts()
+
+  const content =
+    type === 'video' ? (
+      <div className='flex justify-center'>
+        {/* <img src={ImgService} alt='service' className='w-3/4' /> */}
+        <video
+          ref={videoRef}
+          className='w-full object-cover'
+          src={url}
+          autoPlay
+          loop={false}
+          muted
+          onEnded={handleVideoEnd}
+        />
       </div>
-    </div>
-  )
+    ) : (
+      <div className='max-w-full mx-auto text-center relative'>
+        <img src={url} className='w-full' />
+        <div className='absolute -right-4 bottom-12'>
+          <p className='bg-orange-100 px-10 py-4 font-semibold text-lg rounded-s-full text-center'>
+            {position === 'product' && (
+              <Link to={`/products/?catId=2`}>
+                Đồ của <br /> SẾP {catId === 1 ? 'CÚN' : 'MÈO'} ở<br /> đây nè
+              </Link>
+            )}
+          </p>
+        </div>
+      </div>
+    )
+
+  return content
 }
 
 export default Banner
