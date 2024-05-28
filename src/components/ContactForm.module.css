@@ -1,0 +1,49 @@
+.selectWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.customSelect {
+  width: 100%;
+  margin-top: 0.25rem; /* mt-1 */
+  padding: 1rem 2.5rem 1rem 1.5rem; /* px-6 py-4 pr-10 */
+  border-radius: 9999px; /* rounded-full */
+  background-color: #f8edd8; /* bg-peach */
+  color: black;
+  cursor: pointer;
+  position: relative;
+}
+
+.customSelect.active {
+  border-color: #555555;
+}
+
+.options {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
+  background-color: #f8edd8; /* bg-peach */
+  border-radius: 0.5rem;
+  overflow: hidden;
+  z-index: 10;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.option {
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.option:hover {
+  background-color: #e0d4c8;
+}
+
+.icon {
+  position: absolute;
+  right: 1rem; /* right-4 */
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+}

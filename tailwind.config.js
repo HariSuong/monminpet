@@ -5,7 +5,19 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'contact': "url('../src/assets/images/services/bg-contact.png')",
+      },
+      colors: {
+        'peach': '#F8EDD8'
+      },
+      placeholderColor: {
+        'black': '#000000',
+      },
+
+    },
+
   },
   plugins: [],
 }

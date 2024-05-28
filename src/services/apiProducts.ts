@@ -1,5 +1,6 @@
 import { Category } from '../types/cats'
 import { ProductDetail, ProductPagination } from '../types/products'
+import { apiFetchData } from '../ultis/apiUtils'
 
 export const fetchProductsCat = async (): Promise<Category[]> => {
   try {
@@ -44,19 +45,9 @@ export const fetchProducts = async ({
   }
 }
 
-// // Tôi muốn viết hàm gọi api lấy sản phẩm chi tiết, đây là link https://monminpet.com/public/api/products/detail/{id}
-// // Hãy viết hàm fetchProductDetail ở đây
-
 export const fetchProductDetail = async (
   id: number
 ): Promise<ProductDetail> => {
-  const response = await fetch(
-    `https://monminpet.com/public/api/products/detail/${id}`
-  )
-  const data = await response.json()
-  if (data.success) {
-    return data.data as ProductDetail
-  } else {
-    throw new Error('Failed to fetch product detail: ' + data.message)
-  }
+  const url = `https://monminpet.com/public/api/products/detail/${id}`
+  return apiFetchData<ProductDetail>(url)
 }

@@ -9,6 +9,8 @@ import Services from './pages/Services'
 import AboutUs from './pages/AboutUs'
 import Academy from './pages/Academy'
 import ProductsHome from './pages/products/ProductsHome'
+import Service from './pages/Service'
+import PetInsurance from './pages/PetInsurance'
 
 const App: React.FC = () => {
   return (
@@ -24,6 +26,8 @@ const App: React.FC = () => {
           <Route path='/posts' element={<Posts />} />
           <Route path='/posts/:postId' element={<Post />} />
           <Route path='/services' element={<Services />} />
+          <Route path='/services/:serviceId' element={<Service />} />
+          <Route path='/pet-insurance' element={<PetInsurance />} />
         </Route>
         <Route path='*' element={<h1>Not Found</h1>} />
       </Routes>
