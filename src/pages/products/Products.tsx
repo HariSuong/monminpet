@@ -20,7 +20,7 @@ const Products: React.FC = () => {
 
   return (
     <>
-      <Banner url={BannerImg} type='image' />
+      <Banner url={BannerImg} type='image' position='product' />
       <div className='font-[sans-serif] bg-gray-100'>
         <div className='p-4 mx-auto lg:max-w-7xl sm:max-w-full'>
           <ProductList products={data} />

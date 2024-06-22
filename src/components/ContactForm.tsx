@@ -5,6 +5,8 @@ import { ServicesListProps } from '../types/services'
 import Input from '../components/Input'
 import CustomSelect from '../components/CustomSelect'
 import Button from '../components/Button'
+import IconMeo from '../assets/images/icon/1.png'
+import IconCho from '../assets/images/icon/2.png'
 
 interface Option {
   value: string
@@ -36,8 +38,18 @@ const ContactForm: React.FC<ServicesListProps> = ({ servicesList }) => {
   }
 
   return (
-    <div className='min-h-screen bg-contact bg-cover bg-center flex items-center justify-center p-4'>
-      <div className='p-8 max-w-screen-lg w-full mx-auto'>
+    <div className='flex items-center justify-center p-4 relative'>
+      <img
+        src={IconCho}
+        alt='Icon Chó'
+        className='absolute -top-4 right-0 w-1/6 z-0'
+      />
+      <img
+        src={IconMeo}
+        alt='Icon Mèo'
+        className='absolute bottom-0 left-0 w-1/6 z-0'
+      />
+      <div className='p-8 max-w-screen-lg w-full mx-auto z-10'>
         <h2 className='text-2xl font-light'>ĐẶT LỊCH HẸN</h2>
         <h3 className='text-4xl font-semibold mb-6'>BOOKING NOW!</h3>
         <p></p>

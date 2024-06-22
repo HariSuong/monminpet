@@ -1,76 +1,70 @@
-import React, { useRef } from 'react'
+import React from 'react'
 import { Link, useSearchParams } from 'react-router-dom'
+import Video from './Video'
+
 interface BannerProps {
   type: string
   url: string
   position?: string
   to?: string
+  time?: number
 }
 
-const Banner: React.FC<BannerProps> = ({ type, url, position, to }) => {
+const Banner: React.FC<BannerProps> = ({
+  type,
+  url,
+  position = '',
+  to,
+  time = 100
+}) => {
   const [searchParams] = useSearchParams()
   const catId = Number(searchParams.get('catId'))
 
-  console.log(catId)
-
-  const videoRef = useRef<HTMLVideoElement>(null)
-
-  const handleVideoEnd = () => {
-    if (videoRef.current) {
-      setTimeout(() => {
-        videoRef.current?.play()
-      }, 100) // 1 giây
-    }
-  }
-
-  // const { products } = useProducts()
   const image = to ? (
     <Link to={to}>
-      <div className='max-w-full mx-auto text-center relative'>
+      <div className='max-w-full mx-auto text-center relative z-10'>
         <img src={url} className='w-full' />
-        <div className='absolute -right-4 bottom-12'>
+        {position === 'product' && (
+          <div className='absolute right-0 bottom-12'>
+            <p className='bg-orange-100 px-10 py-4 font-semibold text-lg rounded-s-full text-center'>
+              {catId === 1 && (
+                <Link to={`/products/?catId=2`}>
+                  Đồ của <br /> SẾP MÈO ở<br /> đây nè
+                </Link>
+              )}
+              {catId === 2 && (
+                <Link to={`/products/?catId=1`}>
+                  Đồ của <br /> SẾP CÚN ở<br /> đây nè
+                </Link>
+              )}
+            </p>
+          </div>
+        )}
+      </div>
+    </Link>
+  ) : (
+    <div className='max-w-full mx-auto text-center relative z-10'>
+      <img src={url} className='w-full' />
+      {position === 'product' && (
+        <div className='absolute right-0 bottom-12'>
           <p className='bg-orange-100 px-10 py-4 font-semibold text-lg rounded-s-full text-center'>
-            {position === 'product' && (
+            {catId === 1 && (
               <Link to={`/products/?catId=2`}>
-                Đồ của <br /> SẾP {catId === 1 ? 'CÚN' : 'MÈO'} ở<br /> đây nè
+                Đồ của <br /> SẾP MÈO ở<br /> đây nè
+              </Link>
+            )}
+            {catId === 2 && (
+              <Link to={`/products/?catId=1`}>
+                Đồ của <br /> SẾP CÚN ở<br /> đây nè
               </Link>
             )}
           </p>
         </div>
-      </div>
-    </Link>
-  ) : (
-    <div className='max-w-full mx-auto text-center relative'>
-      <img src={url} className='w-full' />
-      <div className='absolute -right-4 bottom-12'>
-        <p className='bg-orange-100 px-10 py-4 font-semibold text-lg rounded-s-full text-center'>
-          {position === 'product' && (
-            <Link to={`/products/?catId=2`}>
-              Đồ của <br /> SẾP {catId === 1 ? 'CÚN' : 'MÈO'} ở<br /> đây nè
-            </Link>
-          )}
-        </p>
-      </div>
+      )}
     </div>
   )
 
-  const content =
-    type === 'video' ? (
-      <div className='flex justify-center'>
-        {/* <img src={ImgService} alt='service' className='w-3/4' /> */}
-        <video
-          ref={videoRef}
-          className='w-full object-cover'
-          src={url}
-          autoPlay
-          loop={false}
-          muted
-          onEnded={handleVideoEnd}
-        />
-      </div>
-    ) : (
-      image
-    )
+  const content = type === 'video' ? <Video url={url} time={time} /> : image
 
   return content
 }

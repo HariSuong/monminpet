@@ -4,7 +4,7 @@ import SeeAll from './SeeAll'
 interface TitleProps {
   title: string
   subtitle: string
-  to: string
+  to?: string
 }
 
 const Title: React.FC<TitleProps> = ({ title, subtitle, to }) => {
@@ -16,7 +16,7 @@ const Title: React.FC<TitleProps> = ({ title, subtitle, to }) => {
           {subtitle}
         </h2>
       </div>
-      <SeeAll to={to} />
+      {to && <SeeAll to={to} />}
     </div>
   )
 }
